@@ -7,58 +7,131 @@ import { AgGridMaterialCheckboxCellComponent } from "./ag-grid-material-checkbox
 import * as moment from 'moment';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss']
+  selector:    'app-root',
+  templateUrl: './app.component.html',
+  styleUrls:   [ './app.component.scss' ],
 })
 export class AppComponent {
-    title = 'app';
+  title = 'app';
 
-    private gridOptions:GridOptions = <GridOptions>{
-        enableSorting: true,
-        rowSelection: 'multiple',
-        suppressRowClickSelection: true
-    };
-    public rowData:any[];
-    private columnDefs:any[];
+  private gridOptions: GridOptions = <GridOptions>{
+    enableSorting:             true,
+    rowSelection:              'multiple',
+    suppressRowClickSelection: true,
+  };
+  public rowData: any[];
+  private columnDefs: any[];
 
 
-    constructor() {
-        this.columnDefs = [
-            {
-                headerName: ' ',
-                cellRendererFramework: AgGridMaterialCheckboxCellComponent,
-                width: 80
-            },
-            {
-                headerName: "Make", 
-                field: "make", 
-                editable: true, 
-                cellEditorFramework: AgGridMaterialSelectEditorComponent ,
-                cellEditorParams: {values: [ 'Toyota', 'Ford', 'Porsche' ]} 
-            },
-            {
-                headerName: "Model", 
-                field: "model", 
-                editable: true, 
-                cellEditorFramework: AgGridMaterialTextEditorComponent 
-            },
-            {   headerName: "Price", 
-                field: "price"
-            },
-            {
-                headerName: "Made on", 
-                field: "madeOn", 
-                editable: true, 
-                cellEditorFramework: AgGridMaterialDatepickerEditorComponent,
-                valueFormatter: (data) => moment(data.value).format('L')
-            },
-        ];
+  constructor() {
+    this.columnDefs = [
+      {
+        headerName:            ' ',
+        cellRendererFramework: AgGridMaterialCheckboxCellComponent,
+        width:                 80,
+      },
+      {
+        headerName:          "Make",
+        field:               "make",
+        editable:            true,
+        cellEditorFramework: AgGridMaterialSelectEditorComponent,
+        cellEditorParams:    { values: [ 'Toyota', 'Ford', 'Porsche' ] },
+      },
+      {
+        headerName:          "Model",
+        field:               "model",
+        editable:            true,
+        cellEditorFramework: AgGridMaterialTextEditorComponent,
+      },
+      {
+        headerName: "Price",
+        field:      "price",
+      },
+      {
+        headerName:          "Made on",
+        field:               "madeOn",
+        editable:            true,
+        cellEditorFramework: AgGridMaterialDatepickerEditorComponent,
+        valueFormatter:      (data) => moment(data.value).format('L'),
+      }, {
+        headerName:          "Made on 2",
+        field:               "madeOn",
+        editable:            true,
+        cellEditorFramework: AgGridMaterialDatepickerEditorComponent,
+        valueFormatter:      (data) => moment(data.value).format('L'),
+      }, {
+        headerName:          "Made on 3",
+        field:               "madeOn",
+        editable:            true,
+        cellEditorFramework: AgGridMaterialDatepickerEditorComponent,
+        valueFormatter:      (data) => moment(data.value).format('L'),
+      }, {
+        headerName:          "Made on 4",
+        field:               "madeOn",
+        editable:            true,
+        cellEditorFramework: AgGridMaterialDatepickerEditorComponent,
+        valueFormatter:      (data) => moment(data.value).format('L'),
+      }, {
+        headerName:          "Made on 5",
+        field:               "madeOn",
+        editable:            true,
+        cellEditorFramework: AgGridMaterialDatepickerEditorComponent,
+        valueFormatter:      (data) => moment(data.value).format('L'),
+      }, {
+        headerName:          "Made on 6",
+        field:               "madeOn",
+        editable:            true,
+        cellEditorFramework: AgGridMaterialDatepickerEditorComponent,
+        valueFormatter:      (data) => moment(data.value).format('L'),
+      },
+    ];
 
-        this.rowData = [
-            {make: "Toyota", model: "Celica", price: 35000, madeOn: new Date(2006, 10, 25)},
-            {make: "Ford", model: "Mondeo", price: 32000,  madeOn: new Date(2016, 2, 13)},
-            {make: "Porsche", model: "Boxter", price: 72000, madeOn: new Date(2010, 7, 10)}
-        ]
+    this.rowData = this._createRowData();
+
+
+  }
+
+  _createRowData() {
+    let rd = this._createSet();
+    for(let i = 0; i <= 10; i++) {
+      rd = rd.concat(this._createSet());
     }
+    return rd;
+  }
+
+  _createSet() {
+    return [ {
+      make:    "Toyota",
+      model:   "Celica",
+      price:   35000,
+      madeOn:  new Date(2006, 10, 25),
+      madeOn2: new Date(2006, 10, 25),
+      madeOn3: new Date(2006, 10, 25),
+      madeOn4: new Date(2006, 10, 25),
+      madeOn5: new Date(2006, 10, 25),
+      madeOn6: new Date(2006, 10, 25),
+    },
+      {
+        make:    "Ford",
+        model:   "Mondeo",
+        price:   32000,
+        madeOn:  new Date(2016, 2, 13),
+        madeOn2: new Date(2006, 10, 25),
+        madeOn3: new Date(2006, 10, 25),
+        madeOn4: new Date(2006, 10, 25),
+        madeOn5: new Date(2006, 10, 25),
+        madeOn6: new Date(2006, 10, 25),
+      },
+      {
+        make:    "Porsche",
+        model:   "Boxter",
+        price:   72000,
+        madeOn:  new Date(2010, 7, 10),
+        madeOn2: new Date(2006, 10, 25),
+        madeOn3: new Date(2006, 10, 25),
+        madeOn4: new Date(2006, 10, 25),
+        madeOn5: new Date(2006, 10, 25),
+        madeOn6: new Date(2006, 10, 25),
+      } ]
+  }
 }
